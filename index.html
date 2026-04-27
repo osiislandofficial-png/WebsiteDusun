@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulau Osi | Portal Resmi Pemerintah Desa</title>
+
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
             --primary: #1e353e;
@@ -65,11 +65,7 @@
             background-image: linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)), var(--bg-main-image);
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        .serif {
+        h1, h2, h3, h4, .serif {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 700;
         }
@@ -80,92 +76,101 @@
             padding: 0 2rem;
         }
 
-        /* Navigation */
-        nav {
+        /* Dashboard Layout */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #1e353e, #102027);
+            color: white;
+            padding: 25px;
             position: fixed;
-            top: 0;
-            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+        }
+
+        .sidebar .logo {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #f4b84d;
+            display: block;
+            text-decoration: none;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #ddd;
+            text-decoration: none;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #ba7d19;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+        }
+
+        /* Topbar */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 900;
             background: var(--bg-nav);
             border-bottom: 1px solid var(--border);
             padding: 1rem 0;
             backdrop-filter: blur(12px);
         }
 
-        nav .container {
+        .topbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
-        .logo {
-            text-decoration: none;
+        .topbar-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .topbar-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 0.75rem;
         }
 
-        .brand-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
             color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 1.1rem;
         }
 
-        .nav-links a:hover {
-            color: var(--accent);
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-main);
         }
-        
-        /* Hamburger Menu */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-    color: var(--text-main);
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: var(--bg-card);
-        flex-direction: column;
-        width: 220px;
-        padding: 1rem;
-        border-radius: 12px;
-        box-shadow: var(--shadow);
-        display: none;
-        gap: 1rem;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-}
 
         /* Hero */
         .hero {
@@ -179,6 +184,7 @@
             background-attachment: fixed;
             color: white;
             text-align: center;
+            border-radius: 0 0 20px 20px;
         }
 
         .hero h1 {
@@ -266,7 +272,6 @@
             text-align: justify;
         }
 
-        /* Baca Selengkapnya Styles */
         #moreText {
             display: none;
         }
@@ -486,37 +491,6 @@
             color: var(--accent);
         }
 
-        @media (max-width: 992px) {
-            .history-grid {
-                grid-template-columns: 1fr;
-            }
-            .history-image-container {
-                height: 350px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .article-card {
-                flex-direction: column;
-            }
-
-            .article-img {
-                width: 100%;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .history-grid {
-                padding: 1.5rem;
-            }
-        }
-
         /* Modal */
         #imageModal {
             position: fixed;
@@ -534,411 +508,417 @@
             border: 3px solid white;
             border-radius: 4px;
         }
+
+        @media (max-width: 992px) {
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+            .history-image-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 260px;
+                left: -260px;
+                transition: 0.3s;
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .article-card {
+                flex-direction: column;
+            }
+
+            .article-img {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .history-grid {
+                padding: 1.5rem;
+            }
+
+            .hero {
+                height: 70vh;
+                background-attachment: scroll;
+            }
+
+            .topbar-title {
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 
 <body data-theme="light">
+    <div class="dashboard">
 
-    <nav>
-    <div class="container">
-        <a href="#" class="logo">
-            <i class="fas fa-ship" style="color: var(--accent);"></i>
-            <span class="brand-name">Pulau Osi</span>
-        </a>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <a href="#home" class="logo">🌊 Pulau Osi</a>
 
-        <ul class="nav-links" id="navMenu">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#statistik">Statistik</a></li>
-            <li><a href="#sejarah">Sejarah</a></li>
-            <li><a href="#potensi">Potensi</a></li>
-            <li><a href="#umkm">UMKM</a></li>
-            <li><a href="#artikel">Artikel</a></li>
-            <li><a href="#galeri">Galeri</a></li>
-        </ul>
+            <a href="#home"><i class="fas fa-home"></i> Beranda</a>
+            <a href="#statistik"><i class="fas fa-chart-bar"></i> Statistik</a>
+            <a href="#sejarah"><i class="fas fa-book-open"></i> Sejarah</a>
+            <a href="#potensi"><i class="fas fa-leaf"></i> Potensi</a>
+            <a href="#umkm"><i class="fas fa-store"></i> UMKM</a>
+            <a href="#artikel"><i class="fas fa-newspaper"></i> Artikel</a>
+            <a href="#galeri"><i class="fas fa-image"></i> Galeri</a>
+            <a href="#peta"><i class="fas fa-map"></i> Pemetaan</a>
+        </aside>
 
-        <!-- Tombol Hamburger -->
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
+        <!-- Main Content -->
+        <main class="main-content">
 
-        <button id="themeBtn"
-            style="background:none; border:none; cursor:pointer; color:var(--text-main); font-size: 1.1rem;">
-            <i class="fas fa-moon"></i>
-        </button>
+            <!-- Topbar -->
+            <div class="topbar">
+                <div class="container">
+                    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+                        <i class="fas fa-bars" id="menuIcon"></i>
+                    </button>
+
+                    <div class="topbar-title">Dashboard Pemerintah Dusun Pulau Osi</div>
+
+                    <div class="topbar-actions">
+                        <button id="themeBtn" class="icon-btn" aria-label="Ubah tema">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero -->
+            <header class="hero" id="home">
+                <div class="container">
+                    <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--accent); margin-bottom: 1rem;">Surga Tersembunyi Maluku</p>
+                    <h1>Harmoni Pesisir Pulau Osi</h1>
+                    <p>Pusat Informasi & Digitalisasi Pemerintah Dusun Pulau Osi</p>
+                </div>
+            </header>
+
+            <!-- Statistik Penduduk -->
+            <section class="section container" id="statistik">
+                <div class="section-title">
+                    <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">DATA DEMOGRAFI</p>
+                    <h2>Kependudukan Desa</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">576</span>
+                        <span class="stat-label">Total Penduduk</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">274</span>
+                        <span class="stat-label">Laki-laki</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">302</span>
+                        <span class="stat-label">Perempuan</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">148</span>
+                        <span class="stat-label">Kepala Keluarga (KK)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sejarah Desa -->
+            <section class="section container" id="sejarah">
+                <div class="section-title">
+                    <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">JEJAK LANGKAH</p>
+                    <h2>Sejarah Desa</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="history-grid">
+                    <div class="history-text">
+                        <p>Pulau Osi secara administratif berada dalam wilayah Kecamatan Waesala, Kabupaten Seram Bagian Barat. Sejarah berdirinya pemukiman di Pulau Osi berawal dari kedatangan para pelaut dan pedagang yang mencari tempat perlindungan strategis serta kekayaan hasil laut yang melimpah.</p>
+                        <p>Pendiri pertama Pulau Osi diketahui bernama La Udu yang berasal dari Buton. Seiring berjalannya waktu, jumlah penduduk semakin bertambah dengan masuknya masyarakat lain yang turut menetap di pulau tersebut.</p>
+
+                        <div id="moreText">
+                            <p>Pada masa awal perkembangannya, Pulau Osi dikenal sebagai dusun nelayan, di mana aktivitas masyarakat sangat bergantung pada laut. Salah satu tradisi yang berkembang saat itu adalah perlombaan perahu layar, yang menjadi bagian dari kehidupan sosial masyarakat mengingat perahu merupakan satu-satunya alat transportasi yang digunakan. Selain itu, Pulau Osi juga memiliki kekayaan budaya berupa tarian Lutunani, meskipun saat ini tarian tersebut sudah tidak lagi dikembangkan oleh masyarakat setempat. Dalam wilayah permukiman, Pulau Osi memiliki karakteristik khas sebagai kawasan pesisir yang sangat dipengaruhi oleh kondisi laut dan dinamika lingkungan sekitarnya. Permukiman umumnya berkembang di sepanjang garis pantai dengan pola memanjang mengikuti kontur pulau. Secara fisik, banyak bangunan rumah didirikan di atas perairan dangkal atau di daerah pasang surut menggunakan konstruksi panggung. Pola ini tidak hanya menjadi bentuk adaptasi terhadap kondisi lingkungan pesisir, tetapi juga mencerminkan kearifan lokal masyarakat dalam memanfaatkan ruang yang tersedia.</p>
+                            <p>Dalam masa perkembangan Pulau Osi, sejumlah tradisi lokal mulai mengalami penurunan, salah satunya adalah penggunaan perahu layar yang dahulu menjadi bagian penting dalam kehidupan masyarakat. Perubahan ini dipengaruhi oleh masuknya alat transportasi yang lebih modern, seperti perahu bermotor ketinting serta speedboat, yang dinilai lebih efisien dan praktis. Selain itu, permukiman di Pulau Osi didominasi oleh masyarakat asal Buton yang merupakan kelompok pertama yang datang dan menetap di wilayah tersebut dengan mayoritas pekerjaan penduduk nelayan, petani dan pegawai. Di sisi lain, Pulau Osi memiliki berbagai potensi sumber daya alam yang melimpah, terutama di sektor kelautan. Potensi tersebut meliputi ekosistem mangrove, budidaya rumput laut, serta hasil perikanan yang menjadi sumber penghidupan utama masyarakat. Selain itu, keindahan alam yang dimiliki juga menjadikan Pulau Osi sebagai salah satu destinasi wisata yang menarik, sehingga tidak hanya mendukung perekonomian lokal, tetapi juga memperkuat daya tarik wilayah ini secara keseluruhan.</p>
+                        </div>
+
+                        <button onclick="toggleHistory()" id="readMoreBtn" class="read-more-btn">
+                            Baca Selengkapnya <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+
+                    <div class="history-image-container">
+                        <img src="https://liburanyuk.co.id/wp-content/uploads/2021/08/@hamzah_al.aidy_-1024x638.jpg" alt="Suasana Pesisir Tradisional Maluku">
+                        <div class="history-image-overlay">
+                            <p class="serif" style="font-style: italic;">Potret Sunset Dusun Pulau Osi.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Potensi Desa -->
+            <section class="section container" id="potensi">
+                <div class="section-title">
+                    <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">KEKAYAAN ALAM</p>
+                    <h2>Potensi Unggulan</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="grid-3">
+                    <div class="card-item">
+                        <img src="images/resortp.jpeg" class="card-img" alt="Wisata">
+                        <div class="card-body">
+                            <h4>Pariwisata Bahari</h4>
+                            <p>Jembatan kayu ikonik dan resort terapung yang menawarkan pengalaman menginap di atas air dengan panorama laut jernih.</p>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img src="images/keramba.jpeg" class="card-img" alt="Perikanan">
+                        <div class="card-body">
+                            <h4>Sektor Perikanan</h4>
+                            <p>Sebagai lumbung ikan, Pulau Osi menghasilkan komoditas laut segar mulai dari ikan karang hingga budidaya keramba.</p>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img src="images/mangrove.jpeg" class="card-img" alt="Mangrove">
+                        <div class="card-body">
+                            <h4>Hutan Mangrove</h4>
+                            <p>Konservasi mangrove yang luas berfungsi sebagai benteng abrasi sekaligus tempat pemijahan alami berbagai biota laut.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- UMKM Masyarakat -->
+            <section class="section" id="umkm" style="background: rgba(188, 156, 106, 0.05);">
+                <div class="container">
+                    <div class="section-title">
+                        <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">EKONOMI LOKAL</p>
+                        <h2>Produk UMKM Desa</h2>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="grid-5">
+                        <div class="card-item">
+                            <img src="images/sirup_mangrove.jpeg" class="card-img" style="height:150px;" alt="Sirup Mangrove">
+                            <div class="card-body">
+                                <h4 style="font-size:1.1rem;">Sirup Mangrove</h4>
+                                <p style="font-size:0.8rem;">Sirup dari olahan mangrove adalah produk makanan yang terbuat dari ekstrak mangrove yang diolah dengan teknik khusus sehingga menghasilkan cairan kental dengan konsistensi sirup yang manis.</p>
+                            </div>
+                        </div>
+                        <div class="card-item">
+                            <img src="images/lulur_mangrove.jpeg" class="card-img" style="height:150px;" alt="lulur mangrove">
+                            <div class="card-body">
+                                <h4 style="font-size:1.1rem;">Lulur Mangrove</h4>
+                                <p style="font-size:0.8rem;">Lulur mangrove adalah lulur berbahan alami dari tanaman mangrove yang bermanfaat untuk mengangkat sel kulit mati, melembapkan, dan menyehatkan kulit. Selain itu, produk ini juga mendukung pemanfaatan potensi pesisir.</p>
+                            </div>
+                        </div>
+                        <div class="card-item">
+                            <img src="images/kopi_mangrove.jpeg" class="card-img" style="height:150px;" alt="kopi mangrove">
+                            <div class="card-body">
+                                <h4 style="font-size:1.1rem;">Kopi Mangrove</h4>
+                                <p style="font-size:0.8rem;">Kopi mangrove adalah minuman berbahan buah mangrove yang diolah menyerupai kopi. Rasanya khas, bebas kafein, dan menjadi produk inovasi dari potensi pesisir.</p>
+                            </div>
+                        </div>
+                        <div class="card-item">
+                            <img src="images/nagget_mangrove.jpeg" class="card-img" style="height:150px;" alt="Nagget Mangrove">
+                            <div class="card-body">
+                                <h4 style="font-size:1.1rem;">Nagget Mangrove</h4>
+                                <p style="font-size:0.8rem;">Nugget mangrove adalah olahan makanan berbahan buah mangrove atau campuran bahan lain yang diolah menjadi nugget bergizi. Produk ini merupakan inovasi pangan dari potensi pesisir.</p>
+                            </div>
+                        </div>
+                        <div class="card-item">
+                            <img src="images/stik_mangrove.jpeg" class="card-img" style="height:150px;" alt="Terasi">
+                            <div class="card-body">
+                                <h4 style="font-size:1.1rem;">Stik Mangrove</h4>
+                                <p style="font-size:0.8rem;">Stik mangrove adalah camilan renyah berbahan mangrove yang diolah menjadi stik gurih dan bergizi. Produk ini merupakan inovasi makanan dari potensi pesisir.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Artikel Desa -->
+            <section class="section container" id="artikel">
+                <div class="section-title">
+                    <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">BERITA & INFORMASI</p>
+                    <h2>Artikel Terbaru</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="article-card">
+                    <img src="https://nativeindonesia.com/wp-content/uploads/pulau-osi/pulau-osi.jpg" class="article-img" alt="Berita 1">
+                    <div class="article-content">
+                        <p class="article-meta">22 Januari 2025 | Fenti Sukma</p>
+                        <h3>Pulau Osi, Jembatan Kayunya Penghubung Antar Pulau</h3>
+                        <p>Pulau Osi menjadi satu dari sederet pulau-pulau mungil nan indah yang ada di Indonesia. Pulau Osi terletak di Kabupaten Seram Bagian Barat, Provinsi Maluku....</p>
+                        <a href="https://nativeindonesia.com/pulau-osi/" target="_blank">Kunjungi Artikel</a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="https://img.antaranews.com/cache/1200x800/2024/01/03/IMG20231224163414_1.jpg.webp" class="article-img" alt="Berita 2">
+                    <div class="article-content">
+                        <p class="article-meta">04 Januari 2024 | Ode Dedy Lion Abdul Azis</p>
+                        <h3>Pulau Osi yang keindahannya selalu memanggil kembali</h3>
+                        <p>Bagi pelancong pemburu objek wisata alam menawan, waktu tempuh berjam-jam bukanlah rintangan. Membelah lautan pun akan menjadi keasyikan karena di sinilah wisatawan mulai menikmati petualangan....</p>
+                        <a href="https://www.antaranews.com/berita/3899091/pulau-osi-yang-keindahannya-selalu-memanggil-kembali" target="_blank">Kunjungi Artikel</a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="https://www.cengkepala.com/storage/2021/10/osi-p.jpg" class="article-img" alt="Berita 3">
+                    <div class="article-content">
+                        <p class="article-meta">04 Oktober 2021 | BILL MALUKU</p>
+                        <h3>Pulau Osi, Objek Wisata Andalan di SBB, Ini Sisi Menariknya</h3>
+                        <p>Pulau Osi berada tepat di Kabupaten Seram Bagian Barat Maluku. Pulau kecil terpisah dengan daratan pulau seram ini menyimpan keindahan alam yang patut dikunjungi.....</p>
+                        <a href="https://www.cengkepala.com/pulau-osi-objek-wisata-andalan-di-sbb-ini-sisi-menariknya/" target="_blank">Kunjungi Artikel</a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="https://img.merahputih.com/media/fd/a1/0f/fda10f6a28ab633dee50cf3c126c9cee.jpg" class="article-img" alt="Berita 4">
+                    <div class="article-content">
+                        <p class="article-meta">04 Januari 2024 | P.Suryo</p>
+                        <h3>Pulau Osi, Penuh Panorama Alam Tak Tertandingi</h3>
+                        <p>Wisatawan yang hendak ke Pulau Osi, menggunakan transportasi kapal. Dari Kota Ambon wisatawan naik kapal dari Pelabuhan Hunimua di Maluku tengah (Malteng). Kemudian menumpang feri menuju Pelabuhan Waipirit. Waktu yang dibutuhkan sekitar 1,5 sampai 2 jam, sebab ini tergantung kapal feri yang beroperasi....</p>
+                        <a href="https://www.merahputih.com/post/read/pulau-osi-penuh-panorama-alam-tak-tertandingi" target="_blank">Kunjungi Artikel</a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="https://www.celebes.co/maluku/wp-content/uploads/2022/03/Alamat-Pulau-Osi-Seram.jpg" class="article-img" alt="Berita 5">
+                    <div class="article-content">
+                        <p class="article-meta">2025 | Indonesia Kaya</p>
+                        <h3>Pulau Osi, Pulau Cantik dengan Panorama Memukau di Seram Bagian Barat</h3>
+                        <p>Maluku merupakan salah satu pulau di Indonesia bagian timur yang menyimpan sejuta panorama alam gugusan pulau kecil yang indah. Sehingga tidak heran jika beberapa tahun belakangan ini Maluku menjadi salah satu tujuan wisata banyak wisatawan lokal dan mancanegara yang ingin menikmati keindahan alam yang ada di pulau ini. Salah satu gugusan pulau kecil di Maluku yang memiliki panorama yang indah ada di Pulau Osi.....</p>
+                        <a href="https://www.celebes.co/maluku/pulau-osi-seram" target="_blank">Kunjungi Artikel</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Galeri Desa -->
+            <section class="section" id="galeri" style="background: var(--primary-dark); color: white;">
+                <div class="container">
+                    <div class="section-title">
+                        <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">VISUAL PULAU OSI</p>
+                        <h2 style="color: white;">Galeri Kegiatan</h2>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="grid-gallery">
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Sunset di Jembatan')"><img src="images/galeri1.jpeg" alt="Galeri 1"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Aktivitas Nelayan')"><img src="images/galeri2.jpeg" alt="Galeri 2"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Penyelaman Karang')"><img src="images/galeri3.jpeg" alt="Galeri 3"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Konservasi Mangrove')"><img src="images/galeri4.jpeg" alt="Galeri 4"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Pasar Lokal')"><img src="images/galeri5.jpeg" alt="Galeri 5"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Resort Terapung')"><img src="images/galeri6.jpeg" alt="Galeri 6"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Anak-anak Desa')"><img src="images/galeri7.jpeg" alt="Galeri 7"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Produksi Kerajinan')"><img src="images/galeri8.jpeg" alt="Galeri 8"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Festival Laut')"><img src="images/galeri9.jpeg" alt="Galeri 9"></div>
+                        <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Gotong Royong')"><img src="images/galeri11.jpeg" alt="Galeri 10"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Peta Tematik & Lokasi -->
+            <section class="section container" id="peta">
+                <div class="section-title">
+                    <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">VISUALISASI DATA SPASIAL</p>
+                    <h2>Peta Tematik & Lokasi</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="grid-thematic">
+                    <div class="map-card" onclick="openModal('images/peta_dusun_2.png', 'Peta Administrasi Desa')">
+                        <img src="images/peta_dusun_2.png" class="map-thumb" alt="Peta Administrasi">
+                        <h4>Peta Administrasi Dusun Pulau Osi</h4>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Batas wilayah dusun serta sarana dan prasarana pendukung desa</p>
+                    </div>
+                    <div class="map-card" onclick="openModal('images/peta_potensi_lahan.png', 'Peta Potensi Desa')">
+                        <img src="images/peta_potensi_lahan.png" class="map-thumb" alt="Peta Potensi">
+                        <h4>Peta Potensi</h4>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Sebaran sumber daya alam berupa hutan mangrove, perikanan, dan objek wisata view</p>
+                    </div>
+                    <div class="map-card" onclick="openModal('images/peta_penggunaan_lahan.png', 'Peta Penggunaan Lahan')">
+                        <img src="images/peta_penggunaan_lahan.png" class="map-thumb" alt="Peta Lahan">
+                        <h4>Peta Penggunaan Lahan</h4>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Dalam peta ini menyajikan informasi tentang penggunaan lahan di wilayah dusun Pulau Osi</p>
+                    </div>
+                    <div class="map-card" onclick="openModal('images/peta_bencana.jpeg', 'Peta Kerawanan Bencana')">
+                        <img src="images/peta_bencana.jpeg" class="map-thumb" alt="Peta Bencana">
+                        <h4>Peta Bencana</h4>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Area rawan banjir, banjir rob atau banjir air pasang & tsunami</p>
+                    </div>
+                </div>
+
+                <div style="height: 450px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 2rem;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1992.1331091924426!2d128.0745937125061!3d-3.023014024262607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6c2fc0ce84b3c1%3A0xdad2da7611301fae!2sBALAI%20DUSUN%20PULAU%20OSI!5e0!3m2!1sid!2sid!4v1776694633534!5m2!1sid!2sid"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </section>
+
+            <footer>
+                <div class="container footer-grid">
+                    <div>
+                        <h3 class="serif" style="font-size: 2rem; color: white;">Pulau Osi</h3>
+                        <p style="margin-top: 1rem;">Membangun masa depan pesisir yang mandiri, berbudaya, dan terdigitalisasi.</p>
+                        <a href="https://instagram.com/kkn.pulauosi2026" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i> @kkn.pulauosi2026
+                        </a>
+                        <a href="https://instagram.com/alvarotipawael_" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i> @alvarotipawael_
+                        </a>
+                    </div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 1rem;">Navigasi</h4>
+                        <a href="#statistik" style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Statistik</a>
+                        <a href="#sejarah" style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Sejarah</a>
+                        <a href="#potensi" style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Potensi</a>
+                        <a href="#umkm" style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">UMKM</a>
+                        <a href="#artikel" style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Berita</a>
+                    </div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 1rem;">Kontak & Sosial Media</h4>
+                        <a href="mailto:osiislandofficial@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i> osiislandofficial@gmail.com
+                        </a>
+                        <a href="https://instagram.com/osiisland_official" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i> @osiisland_official
+                        </a>
+                        <p style="margin-top: 1rem;"><i class="fas fa-map-marker-alt"></i> Kec. Seram Barat, Kab. Seram Bagian Barat</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem; opacity: 0.5; font-size: 0.8rem;">
+                    &copy; 2026 Pemerintah Dusun Pulau Osi - KKN UNPATTI AKT 52 GEL 2
+                </div>
+            </footer>
+
+        </main>
     </div>
-    </nav>
-
-    <header class="hero" id="home">
-        <div class="container">
-            <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--accent); margin-bottom: 1rem;">Surga
-                Tersembunyi Maluku</p>
-            <h1>Harmoni Pesisir Pulau Osi</h1>
-            <p>Pusat Informasi & Digitalisasi Pemerintah Dusun Pulau Osi</p>
-        </div>
-    </header>
-
-    <!-- Statistik Penduduk -->
-    <section class="section container" id="statistik">
-        <div class="section-title">
-            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">DATA DEMOGRAFI</p>
-            <h2>Kependudukan Desa</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">576</span>
-                <span class="stat-label">Total Penduduk</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">274</span>
-                <span class="stat-label">Laki-laki</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">302</span>
-                <span class="stat-label">Perempuan</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">148</span>
-                <span class="stat-label">Kepala Keluarga (KK)</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sejarah Desa -->
-    <section class="section container" id="sejarah">
-        <div class="section-title">
-            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">JEJAK LANGKAH</p>
-            <h2>Sejarah Desa</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="history-grid">
-            <!-- Teks Sejarah -->
-            <div class="history-text">
-                <p>Pulau Osi secara administratif berada dalam wilayah Kecamatan Waesala, Kabupaten Seram Bagian Barat. Sejarah berdirinya pemukiman di Pulau Osi berawal dari kedatangan para pelaut dan pedagang yang mencari tempat perlindungan strategis serta kekayaan hasil laut yang melimpah.</p>
-                <p>Pendiri pertama Pulau Osi diketahui bernama La Udu yang berasal dari Buton. Seiring berjalannya waktu, jumlah penduduk semakin bertambah dengan masuknya masyarakat lain yang turut menetap di pulau tersebut.</p>
-                
-                <!-- Teks yang disembunyikan -->
-                <div id="moreText">
-                    <p>Pada masa awal perkembangannya, Pulau Osi dikenal sebagai dusun nelayan, di mana aktivitas masyarakat sangat bergantung pada laut. Salah satu tradisi yang berkembang saat itu adalah perlombaan perahu layar, yang menjadi bagian dari kehidupan sosial masyarakat mengingat perahu merupakan satu-satunya alat transportasi yang digunakan. Selain itu, Pulau Osi juga memiliki kekayaan budaya berupa tarian Lutunani, meskipun saat ini tarian tersebut sudah tidak lagi dikembangkan oleh masyarakat setempat. Dalam wilayah  permukiman, pulau osi memiliki karakteristik khas sebagai kawasan pesisir yang sangat dipengaruhi oleh kondisi laut dan dinamika lingkungan sekitarnya. Permukiman umumnya berkembang di sepanjang garis pantai dengan pola memanjang mengikuti kontur pulau, Secara fisik, banyak bangunan rumah didirikan di atas perairan dangkal atau di daerah pasang surut menggunakan konstruksi panggung. Pola ini tidak hanya menjadi bentuk adaptasi terhadap kondisi lingkungan pesisir, tetapi juga mencerminkan kearifan lokal masyarakat dalam memanfaatkan ruang yang tersedia.</p>
-                    <p>Dalam masa perkembangan Pulau Osi, sejumlah tradisi lokal mulai mengalami penurunan, salah satunya adalah penggunaan perahu layar yang dahulu menjadi bagian penting dalam kehidupan masyarakat. Perubahan ini dipengaruhi oleh masuknya alat transportasi yang lebih modern, seperti perahu bermotor ketinting serta speedboat, yang dinilai lebih efisien dan praktis. Selain itu, permukiman di Pulau Osi didominasi oleh masyarakat asal Buton yang merupakan kelompok pertama yang datang dan menetap di wilayah tersebut dengan mayoritas pekerjaan penduduk nelayan, petani dan pegawai.
-Di sisi lain, Pulau Osi memiliki berbagai potensi sumber daya alam yang melimpah, terutama di sektor kelautan. Potensi tersebut meliputi ekosistem mangrove, budidaya rumput laut, serta hasil perikanan yang menjadi sumber penghidupan utama masyarakat. Selain itu, keindahan alam yang dimiliki juga menjadikan Pulau Osi sebagai salah satu destinasi wisata yang menarik, sehingga tidak hanya mendukung perekonomian lokal, tetapi juga memperkuat daya tarik wilayah ini secara keseluruhan.
-</p>
-                </div>
-                
-                <button onclick="toggleHistory()" id="readMoreBtn" class="read-more-btn">
-                    Baca Selengkapnya <i class="fas fa-chevron-down"></i>
-                </button>
-            </div>
-            <!-- Foto Sejarah -->
-            <div class="history-image-container">
-                <img src="https://liburanyuk.co.id/wp-content/uploads/2021/08/@hamzah_al.aidy_-1024x638.jpg" alt="Suasana Pesisir Tradisional Maluku">
-                <div class="history-image-overlay">
-                    <p class="serif" style="font-style: italic;">Potret Sunset Dusun Pulau Osi.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Potensi Desa (3 Item) -->
-    <section class="section container" id="potensi">
-        <div class="section-title">
-            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">KEKAYAAN ALAM</p>
-            <h2>Potensi Unggulan</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="grid-3">
-            <div class="card-item">
-                <img src="images/resortp.jpeg" class="card-img"
-                    alt="Wisata">
-                <div class="card-body">
-                    <h4>Pariwisata Bahari</h4>
-                    <p>Jembatan kayu ikonik dan resort terapung yang menawarkan pengalaman menginap di atas air dengan
-                        panorama laut jernih.</p>
-                </div>
-            </div>
-            <div class="card-item">
-                <img src="images/keramba.jpeg" class="card-img"
-                    alt="Perikanan">
-                <div class="card-body">
-                    <h4>Sektor Perikanan</h4>
-                    <p>Sebagai lumbung ikan, Pulau Osi menghasilkan komoditas laut segar mulai dari ikan karang hingga
-                        budidaya keramba.</p>
-                </div>
-            </div>
-            <div class="card-item">
-                <img src="images/mangrove.jpeg" class="card-img" alt="Mangrove">
-                <div class="card-body">
-                    <h4>Hutan Mangrove</h4>
-                    <p>Konservasi mangrove yang luas berfungsi sebagai benteng abrasi sekaligus tempat pemijahan alami
-                        berbagai biota laut.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- UMKM Masyarakat (5 Item) -->
-    <section class="section" id="umkm" style="background: rgba(188, 156, 106, 0.05);">
-        <div class="container">
-            <div class="section-title">
-                <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">EKONOMI LOKAL</p>
-                <h2>Produk UMKM Desa</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="grid-5">
-                <div class="card-item">
-                    <img src="images/sirup_mangrove.jpeg" class="card-img"
-                        style="height:150px;" alt="Sirup Mangrove">
-                    <div class="card-body">
-                        <h4 style="font-size:1.1rem;">Sirup Mangrove</h4>
-                        <p style="font-size:0.8rem;">Sirup dari olahan mangrove adalah produk makanan yang terbuat dari ekstrak mangrove yang diolah dengan teknik khusus sehingga menghasilkan cairan kental dengan konsistensi sirup yang manis.</p>
-                    </div>
-                </div>
-                <div class="card-item">
-                    <img src="images/lulur_mangrove.jpeg" class="card-img"
-                        style="height:150px;" alt="lulur mangrove">
-                    <div class="card-body">
-                        <h4 style="font-size:1.1rem;">Lulur Mangrove
-                        </h4>
-                        <p style="font-size:0.8rem;">Lulur mangrove adalah lulur berbahan alami dari tanaman mangrove yang bermanfaat untuk mengangkat sel kulit mati, melembapkan, dan menyehatkan kulit. Selain itu, produk ini juga mendukung pemanfaatan potensi pesisir.
-</p>
-                    </div>
-                </div>
-                <div class="card-item">
-                    <img src="images/kopi_mangrove.jpeg" class="card-img"
-                        style="height:150px;" alt="kopi mangrove">
-                    <div class="card-body">
-                        <h4 style="font-size:1.1rem;">Kopi Mangrove</h4>
-                        <p style="font-size:0.8rem;">Kopi mangrove adalah minuman berbahan buah mangrove yang diolah menyerupai kopi. Rasanya khas, bebas kafein, dan menjadi produk inovasi dari potensi pesisir.
-.</p>
-                    </div>
-                </div>
-                <div class="card-item">
-                    <img src="images/nagget_mangrove.jpeg" class="card-img"
-                        style="height:150px;" alt="Nagget Mangrove">
-                    <div class="card-body">
-                        <h4 style="font-size:1.1rem;">Nagget Mangrove</h4>
-                        <p style="font-size:0.8rem;">Nugget mangrove adalah olahan makanan berbahan buah mangrove atau campuran bahan lain yang diolah menjadi nugget bergizi. Produk ini merupakan inovasi pangan dari potensi pesisir.
-.</p>
-                    </div>
-                </div>
-                <div class="card-item">
-                    <img src="images/stik_mangrove.jpeg" class="card-img"
-                        style="height:150px;" alt="Terasi">
-                    <div class="card-body">
-                        <h4 style="font-size:1.1rem;">Stik Mangrove</h4>
-                        <p style="font-size:0.8rem;">Stik mangrove adalah camilan renyah berbahan mangrove yang diolah menjadi stik gurih dan bergizi. Produk ini merupakan inovasi makanan dari potensi pesisir.
-.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Artikel Desa (5 Item) -->
-    <section class="section container" id="artikel">
-        <div class="section-title">
-            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">BERITA & INFORMASI</p>
-            <h2>Artikel Terbaru</h2>
-            <div class="divider"></div>
-        </div>
-
-        <div class="article-card">
-            <img src="https://nativeindonesia.com/wp-content/uploads/pulau-osi/pulau-osi.jpg" class="article-img"
-                alt="Berita 1">
-            <div class="article-content">
-                <p class="article-meta">22 Januari 2025 | Fenti Sukma</p>
-                <h3>Pulau Osi, Jembatan Kayunya Penghubung Antar Pulau</h3>
-                <p>Pulau Osi menjadi satu dari sederet pulau-pulau mungil nan indah yang ada di Indonesia. Pulau Osi terletak di Kabupaten Seram Bagian Barat, Provinsi Maluku....</p>
-                    <a href="https://nativeindonesia.com/pulau-osi/" target="_blank">Kunjungi Artikel</a>
-                    </div>
-        </div>
-
-        <div class="article-card">
-            <img src="https://img.antaranews.com/cache/1200x800/2024/01/03/IMG20231224163414_1.jpg.webp" class="article-img"
-                alt="Berita 2">
-            <div class="article-content">
-                <p class="article-meta">04 Januari 2024 | Ode Dedy Lion Abdul Azis</p>
-                <h3>Pulau Osi yang keindahannya selalu memanggil kembali</h3>
-                <p>Bagi pelancong pemburu objek wisata alam menawan, waktu tempuh berjam-jam bukanlah rintangan. Membelah lautan pun akan menjadi keasyikan karena di sinilah wisatawan mulai menikmati petualangan....</p>
-                          <a href="https://www.antaranews.com/berita/3899091/pulau-osi-yang-keindahannya-selalu-memanggil-kembali" target="_blank">Kunjungi Artikel</a>
-            </div>
-        </div>
-
-        <div class="article-card">
-            <img src="https://www.cengkepala.com/storage/2021/10/osi-p.jpg" class="article-img"
-                alt="Berita 3">
-            <div class="article-content">
-                <p class="article-meta">04 Oktober 2021 | BILL MALUKU</p>
-                <h3>Pulau Osi, Objek Wisata Andalan di SBB, Ini Sisi Menariknya</h3>
-                <p>Pulau Osi berada tepat di Kabupaten Seram Bagian Barat Maluku. Pulau kecil terpisah dengan daratan pulau seram ini menyimpan keindahan alam yang patut dikunjungi.....
-                </p>
-                 <a href="https://www.cengkepala.com/pulau-osi-objek-wisata-andalan-di-sbb-ini-sisi-menariknya/" target="_blank">Kunjungi Artikel</a>
-              </div>
-        </div>
-
-        <div class="article-card">
-            <img src="https://img.merahputih.com/media/fd/a1/0f/fda10f6a28ab633dee50cf3c126c9cee.jpg" class="article-img"
-                alt="Berita 4">
-            <div class="article-content">
-                <p class="article-meta">04 Januari 2024 | P.Suryo</p>
-                <h3>Pulau Osi, Penuh Panorama Alam Tak Tertandingi</h3>
-                <p>Wisatawan yang hendak ke Pulau Osi, menggunakan transportasi kapal. Dari Kota Ambon wisatawan naik kapal dari Pelabuhan Hunimua di Maluku tengah (Malteng). Kemudian menumpang feri menuju Pelabuhan Waipirit. Waktu yang dibutuhkan sekitar 1,5 sampai 2 jam, sebab ini tergantung kapal feri yang beroperasi....</p>
-                <a href="https://www.merahputih.com/post/read/pulau-osi-penuh-panorama-alam-tak-tertandingi" target="_blank">Kunjungi Artikel</a>
-            </div>
-        </div>
-
-        <div class="article-card">
-            <img src="https://www.celebes.co/maluku/wp-content/uploads/2022/03/Alamat-Pulau-Osi-Seram.jpg" class="article-img"
-                alt="Berita 5">
-            <div class="article-content">
-                <p class="article-meta">2025 | Indonesia Kaya</p>
-                <h3>Pulau Osi, Pulau Cantik dengan Panorama Memukau di Seram Bagian Barat</h3>
-                <p>Maluku merupakan salah satu pulau di Indonesia bagian timur yang menyimpan sejuta panorama alam gugusan pulau kecil yang indah.
-
-Sehingga tidak heran jika beberapa tahun belakangan ini Maluku menjadi salah satu tujuan wisata banyak wisatawan lokal dan mancanegara yang ingin menikmati keindahan alam yang ada di pulau ini. Salah satu gugusan pulau kecil di Maluku yang memiliki panorama yang indah ada di Pulau Osi.....
-                </p>
-                <a href="https://www.celebes.co/maluku/pulau-osi-seram" target="_blank">Kunjungi Artikel</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galeri Desa (10 Item) -->
-    <section class="section" id="galeri" style="background: var(--primary-dark); color: white;">
-        <div class="container">
-            <div class="section-title">
-                <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">VISUAL PULAU OSI</p>
-                <h2 style="color: white;">Galeri Kegiatan</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="grid-gallery">
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Sunset di Jembatan')"><img
-                        src="images/galeri1.jpeg" alt="Galeri 1">
-                </div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Aktivitas Nelayan')"><img
-                        src="images/galeri2.jpeg" alt="Galeri 2">
-                </div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Penyelaman Karang')"><img
-                        src="images/galeri3.jpeg" alt="Galeri 3"></div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Konservasi Mangrove')"><img
-                        src="images/galeri4.jpeg" alt="Galeri 4">
-                </div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Pasar Lokal')"><img
-                        src="images/galeri5.jpeg" alt="Galeri 5">
-                </div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Resort Terapung')"><img
-                        src="images/galeri6.jpeg" alt="Galeri 6">
-                </div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Anak-anak Desa')"><img
-                        src="images/galeri7.jpeg" alt="Galeri 7">
-                </div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Produksi Kerajinan')"><img
-                        src="images/galeri8.jpeg" alt="Galeri 8">
-                </div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Festival Laut')"><img
-                        src="images/galeri9.jpeg" alt="Galeri 9"></div>
-                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Gotong Royong')"><img
-                        src="images/galeri11.jpeg" alt="Galeri 10">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Peta Tematik & Lokasi -->
-    <section class="section container" id="peta">
-        <div class="section-title">
-            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">VISUALISASI DATA SPASIAL</p>
-            <h2>Peta Tematik & Lokasi</h2>
-            <div class="divider"></div>
-        </div>
-
-        <!-- Peta Tematik Grid -->
-        <div class="grid-thematic">
-            <div class="map-card" onclick="openModal('images/peta_dusun_2.png', 'Peta Administrasi Desa')">
-                <img src="images/peta_dusun_2.png" class="map-thumb" alt="Peta Administrasi">
-                <h4>Peta Administrasi Dusun Pulau Osi</h4>
-                <p style="font-size: 0.75rem; color: var(--text-muted);">Batas wilayah dusun serta sarana dan prasarana pendukung desa</p>
-            </div>
-            <div class="map-card" onclick="openModal('images/peta_potensi_lahan.png', 'Peta Potensi Desa')">
-                <img src="images/peta_potensi_lahan.png" class="map-thumb" alt="Peta Potensi">
-                <h4>Peta Potensi</h4>
-                <p style="font-size: 0.75rem; color: var(--text-muted);">Sebaran sumber daya alam berupa hutan mangrove, perikanan, dan objek wisata view</p>
-            </div>
-            <div class="map-card" onclick="openModal('images/peta_penggunaan_lahan.png', 'Peta Penggunaan Lahan')">
-                <img src="images/peta_penggunaan_lahan.png" class="map-thumb" alt="Peta Lahan">
-                <h4>Peta Penggunaan Lahan</h4>
-                <p style="font-size: 0.75rem; color: var(--text-muted);">dalam peta ini menyajikan informasi tentang penggunaan lahan di wilayah dusun Pulau Osi</p>
-            </div>
-            <div class="map-card" onclick="openModal('images/peta_bencana.jpeg', 'Peta Kerawanan Bencana')">
-                <img src="images/peta_bencana.jpeg" class="map-thumb" alt="Peta Bencana">
-                <h4>Peta Bencana</h4>
-                <p style="font-size: 0.75rem; color: var(--text-muted);">Area rawan banjir, banjir robb atau banjir air pasang & tsunami</p>
-            </div>
-            
-        </div>
-
-        <!-- Google Maps -->
-        <div style="height: 450px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow);">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1992.1331091924426!2d128.0745937125061!3d-3.023014024262607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6c2fc0ce84b3c1%3A0xdad2da7611301fae!2sBALAI%20DUSUN%20PULAU%20OSI!5e0!3m2!1sid!2sid!4v1776694633534!5m2!1sid!2sid"
-                width="100%"
-                height="100%"
-                style="border:0;"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-    </section>
-
-    <footer>
-        <div class="container footer-grid">
-            <div>
-                <h3 class="serif" style="font-size: 2rem; color: white;">Pulau Osi</h3>
-                <p style="margin-top: 1rem;">Membangun masa depan pesisir yang mandiri, berbudaya, dan terdigitalisasi. 
-                </p>
-                </a>
-                 <a href="https://instagram.com/kkn.pulauosi2026" target="_blank" class="social-link">
-                    <i class="fab fa-instagram"></i> @kkn.pulauosi2026 
-                </a>
-                <a href="https://instagram.com/alvarotipawael_" target="_blank" class="social-link">
-                    <i class="fab fa-instagram"></i> @alvarotipawael_
-                </a>
-            </div>
-            <div>
-                <h4 style="color: white; margin-bottom: 1rem;">Navigasi</h4>
-                <a href="#statistik"
-                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Statistik</a>
-                <a href="#sejarah"
-                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Sejarah</a>
-                <a href="#potensi"
-                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Potensi</a>
-                <a href="#umkm"
-                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">UMKM</a>
-                <a href="#artikel"
-                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Berita</a>
-            </div>
-            <div>
-                <h4 style="color: white; margin-bottom: 1rem;">Kontak & Sosial Media</h4>
-                <a href="mailto:osiislandofficial@gmail.com" class="social-link">
-                    <i class="fas fa-envelope"></i> osiislandofficial@gmail.com
-                </a>
-                <a href="https://instagram.com/osiisland_official" target="_blank" class="social-link">
-                    <i class="fab fa-instagram"></i> @osiisland_official
-                </a>
-                <p style="margin-top: 1rem;"><i class="fas fa-map-marker-alt"></i> Kec. Seram Barat, Kab. Seram Bagian Barat
-                </p>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 3rem; opacity: 0.5; font-size: 0.8rem;">
-            &copy; 2026 Pemerintah Dusun Pulau Osi - KKN UNPATTI AKT 52 GEL 2 
-        </div>
-    </footer>
 
     <!-- Modal View -->
     <div id="imageModal">
-        <span onclick="closeModal()"
-            style="position:absolute; top:20px; right:30px; font-size:3rem; cursor:pointer; color:white;">&times;</span>
-        <img id="modalImg" src="">
+        <span onclick="closeModal()" style="position:absolute; top:20px; right:30px; font-size:3rem; cursor:pointer; color:white;">&times;</span>
+        <img id="modalImg" src="" alt="Preview">
     </div>
 
     <script>
@@ -969,23 +949,34 @@ Sehingga tidak heran jika beberapa tahun belakangan ini Maluku menjadi salah sat
             document.getElementById('modalImg').src = src;
             document.getElementById('imageModal').style.display = 'flex';
         }
+
         function closeModal() {
             document.getElementById('imageModal').style.display = 'none';
         }
 
-        // Close modal on click outside image
         document.getElementById('imageModal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('imageModal')) closeModal();
         });
 
-        // Hamburger Menu
+        // Sidebar Mobile + ikon berubah
         const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.getElementById('menuIcon');
 
-         menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        });     
+        menuToggle.addEventListener('click', () => {
+            const isOpen = sidebar.classList.toggle('show');
+            menuIcon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+        });
+
+        // Tutup sidebar setelah klik menu di mobile
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('show');
+                    menuIcon.className = 'fas fa-bars';
+                }
+            });
+        });
     </script>
 </body>
-
 </html>
