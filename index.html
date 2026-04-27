@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulau Osi | Portal Resmi Pemerintah Desa</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e353e;
+            --primary-dark: #0f1c21;
+            --accent: #ba7d19;
+            --accent-light: #b27315;
+            --bg-body: #fdfcf8;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-nav: rgba(255, 252, 248, 0.98);
+            --text-main: #1a1a1a;
+            --text-muted: #5a5a5a;
+            --border: #e8e2d6;
+            --shadow: 0 15px 35px -5px rgba(26, 46, 53, 0.08);
+            --hero-overlay: linear-gradient(to bottom, rgba(26, 46, 53, 0.8), rgba(26, 46, 53, 0.4));
+            --bg-main-image: url('https://indonesiakaya.com/wp-content/uploads/2020/10/Perkampungan_di_Pulau_Osi_dari_ketinggian_4.jpg');
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #121212;
+            --bg-card: rgba(30, 30, 30, 0.9);
+            --bg-nav: rgba(15, 28, 33, 0.98);
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border: #2c2c2c;
+            --shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
+            --hero-overlay: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.4s, color 0.4s, border-color 0.4s, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-body);
+            background-image: linear-gradient(rgba(253, 252, 248, 0.92), rgba(253, 252, 248, 0.92)), var(--bg-main-image);
+            background-attachment: fixed;
+            background-size: cover;
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        [data-theme="dark"] body {
+            background-image: linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)), var(--bg-main-image);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--bg-nav);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            backdrop-filter: blur(12px);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: var(--hero-overlay), var(--bg-main-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* Section Global */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary);
+        }
+
+        [data-theme="dark"] .section-title h2 {
+            color: var(--accent);
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 20px auto;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* History Section Styles */
+        .history-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .history-text p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Baca Selengkapnya Styles */
+        #moreText {
+            display: none;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            padding: 0;
+            transition: 0.3s;
+        }
+
+        .read-more-btn:hover {
+            color: var(--accent-light);
+            transform: translateX(5px);
+        }
+
+        .history-image-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .history-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .history-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 1.5rem;
+            color: white;
+            font-size: 0.85rem;
+        }
+
+        /* Peta Tematik Grid */
+        .grid-thematic {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .map-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .map-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .map-thumb {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .map-card h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        [data-theme="dark"] .map-card h4 {
+            color: var(--accent);
+        }
+
+        /* Grids */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Cards */
+        .card-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .card-item:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+        }
+
+        .card-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Articles */
+        .article-card {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .article-img {
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .article-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Gallery */
+        .gallery-item {
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: #d1d5db;
+            padding: 60px 0 30px;
+            border-top: 5px solid var(--accent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .social-link {
+            color: #d1d5db;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 992px) {
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+            .history-image-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .article-card {
+                flex-direction: column;
+            }
+
+            .article-img {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .history-grid {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Modal */
+        #imageModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 5000;
+        }
+
+        #modalImg {
+            max-width: 90%;
+            max-height: 85vh;
+            border: 3px solid white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-ship" style="color: var(--accent);"></i>
+                <span class="brand-name">Pulau Osi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#statistik">Statistik</a></li>
+                <li><a href="#sejarah">Sejarah</a></li>
+                <li><a href="#potensi">Potensi</a></li>
+                <li><a href="#umkm">UMKM</a></li>
+                <li><a href="#artikel">Artikel</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+            </ul>
+            <button id="themeBtn"
+                style="background:none; border:none; cursor:pointer; color:var(--text-main); font-size: 1.1rem;">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="container">
+            <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--accent); margin-bottom: 1rem;">Surga
+                Tersembunyi Maluku</p>
+            <h1>Harmoni Pesisir Pulau Osi</h1>
+            <p>Pusat Informasi & Digitalisasi Pemerintah Dusun Pulau Osi</p>
+        </div>
+    </header>
+
+    <!-- Statistik Penduduk -->
+    <section class="section container" id="statistik">
+        <div class="section-title">
+            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">DATA DEMOGRAFI</p>
+            <h2>Kependudukan Desa</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">576</span>
+                <span class="stat-label">Total Penduduk</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">274</span>
+                <span class="stat-label">Laki-laki</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">302</span>
+                <span class="stat-label">Perempuan</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">148</span>
+                <span class="stat-label">Kepala Keluarga (KK)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sejarah Desa -->
+    <section class="section container" id="sejarah">
+        <div class="section-title">
+            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">JEJAK LANGKAH</p>
+            <h2>Sejarah Desa</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="history-grid">
+            <!-- Teks Sejarah -->
+            <div class="history-text">
+                <p>Pulau Osi secara administratif berada dalam wilayah Kecamatan Waesala, Kabupaten Seram Bagian Barat. Sejarah berdirinya pemukiman di Pulau Osi berawal dari kedatangan para pelaut dan pedagang yang mencari tempat perlindungan strategis serta kekayaan hasil laut yang melimpah.</p>
+                <p>Pendiri pertama Pulau Osi diketahui bernama La Udu yang berasal dari Buton. Seiring berjalannya waktu, jumlah penduduk semakin bertambah dengan masuknya masyarakat lain yang turut menetap di pulau tersebut.</p>
+                
+                <!-- Teks yang disembunyikan -->
+                <div id="moreText">
+                    <p>Pada masa awal perkembangannya, Pulau Osi dikenal sebagai dusun nelayan, di mana aktivitas masyarakat sangat bergantung pada laut. Salah satu tradisi yang berkembang saat itu adalah perlombaan perahu layar, yang menjadi bagian dari kehidupan sosial masyarakat mengingat perahu merupakan satu-satunya alat transportasi yang digunakan. Selain itu, Pulau Osi juga memiliki kekayaan budaya berupa tarian Lutunani, meskipun saat ini tarian tersebut sudah tidak lagi dikembangkan oleh masyarakat setempat. Dalam wilayah  permukiman, pulau osi memiliki karakteristik khas sebagai kawasan pesisir yang sangat dipengaruhi oleh kondisi laut dan dinamika lingkungan sekitarnya. Permukiman umumnya berkembang di sepanjang garis pantai dengan pola memanjang mengikuti kontur pulau, Secara fisik, banyak bangunan rumah didirikan di atas perairan dangkal atau di daerah pasang surut menggunakan konstruksi panggung. Pola ini tidak hanya menjadi bentuk adaptasi terhadap kondisi lingkungan pesisir, tetapi juga mencerminkan kearifan lokal masyarakat dalam memanfaatkan ruang yang tersedia.</p>
+                    <p>Dalam masa perkembangan Pulau Osi, sejumlah tradisi lokal mulai mengalami penurunan, salah satunya adalah penggunaan perahu layar yang dahulu menjadi bagian penting dalam kehidupan masyarakat. Perubahan ini dipengaruhi oleh masuknya alat transportasi yang lebih modern, seperti perahu bermotor ketinting serta speedboat, yang dinilai lebih efisien dan praktis. Selain itu, permukiman di Pulau Osi didominasi oleh masyarakat asal Buton yang merupakan kelompok pertama yang datang dan menetap di wilayah tersebut dengan mayoritas pekerjaan penduduk nelayan, petani dan pegawai.
+Di sisi lain, Pulau Osi memiliki berbagai potensi sumber daya alam yang melimpah, terutama di sektor kelautan. Potensi tersebut meliputi ekosistem mangrove, budidaya rumput laut, serta hasil perikanan yang menjadi sumber penghidupan utama masyarakat. Selain itu, keindahan alam yang dimiliki juga menjadikan Pulau Osi sebagai salah satu destinasi wisata yang menarik, sehingga tidak hanya mendukung perekonomian lokal, tetapi juga memperkuat daya tarik wilayah ini secara keseluruhan.
+</p>
+                </div>
+                
+                <button onclick="toggleHistory()" id="readMoreBtn" class="read-more-btn">
+                    Baca Selengkapnya <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            <!-- Foto Sejarah -->
+            <div class="history-image-container">
+                <img src="https://liburanyuk.co.id/wp-content/uploads/2021/08/@hamzah_al.aidy_-1024x638.jpg" alt="Suasana Pesisir Tradisional Maluku">
+                <div class="history-image-overlay">
+                    <p class="serif" style="font-style: italic;">Potret Sunset Dusun Pulau Osi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Potensi Desa (3 Item) -->
+    <section class="section container" id="potensi">
+        <div class="section-title">
+            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">KEKAYAAN ALAM</p>
+            <h2>Potensi Unggulan</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="grid-3">
+            <div class="card-item">
+                <img src="images/resortp.jpeg" class="card-img"
+                    alt="Wisata">
+                <div class="card-body">
+                    <h4>Pariwisata Bahari</h4>
+                    <p>Jembatan kayu ikonik dan resort terapung yang menawarkan pengalaman menginap di atas air dengan
+                        panorama laut jernih.</p>
+                </div>
+            </div>
+            <div class="card-item">
+                <img src="images/keramba.jpeg" class="card-img"
+                    alt="Perikanan">
+                <div class="card-body">
+                    <h4>Sektor Perikanan</h4>
+                    <p>Sebagai lumbung ikan, Pulau Osi menghasilkan komoditas laut segar mulai dari ikan karang hingga
+                        budidaya keramba.</p>
+                </div>
+            </div>
+            <div class="card-item">
+                <img src="images/mangrove.jpeg" class="card-img" alt="Mangrove">
+                <div class="card-body">
+                    <h4>Hutan Mangrove</h4>
+                    <p>Konservasi mangrove yang luas berfungsi sebagai benteng abrasi sekaligus tempat pemijahan alami
+                        berbagai biota laut.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UMKM Masyarakat (5 Item) -->
+    <section class="section" id="umkm" style="background: rgba(188, 156, 106, 0.05);">
+        <div class="container">
+            <div class="section-title">
+                <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">EKONOMI LOKAL</p>
+                <h2>Produk UMKM Desa</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="grid-5">
+                <div class="card-item">
+                    <img src="images/sirup_mangrove.jpeg" class="card-img"
+                        style="height:150px;" alt="Sirup Mangrove">
+                    <div class="card-body">
+                        <h4 style="font-size:1.1rem;">Sirup Mangrove</h4>
+                        <p style="font-size:0.8rem;">Sirup dari olahan mangrove adalah produk makanan yang terbuat dari ekstrak mangrove yang diolah dengan teknik khusus sehingga menghasilkan cairan kental dengan konsistensi sirup yang manis.</p>
+                    </div>
+                </div>
+                <div class="card-item">
+                    <img src="images/lulur_mangrove.jpeg" class="card-img"
+                        style="height:150px;" alt="lulur mangrove">
+                    <div class="card-body">
+                        <h4 style="font-size:1.1rem;">Lulur Mangrove
+                        </h4>
+                        <p style="font-size:0.8rem;">Lulur mangrove adalah lulur berbahan alami dari tanaman mangrove yang bermanfaat untuk mengangkat sel kulit mati, melembapkan, dan menyehatkan kulit. Selain itu, produk ini juga mendukung pemanfaatan potensi pesisir.
+</p>
+                    </div>
+                </div>
+                <div class="card-item">
+                    <img src="images/kopi_mangrove.jpeg" class="card-img"
+                        style="height:150px;" alt="kopi mangrove">
+                    <div class="card-body">
+                        <h4 style="font-size:1.1rem;">Kopi Mangrove</h4>
+                        <p style="font-size:0.8rem;">Kopi mangrove adalah minuman berbahan buah mangrove yang diolah menyerupai kopi. Rasanya khas, bebas kafein, dan menjadi produk inovasi dari potensi pesisir.
+.</p>
+                    </div>
+                </div>
+                <div class="card-item">
+                    <img src="images/nagget_mangrove.jpeg" class="card-img"
+                        style="height:150px;" alt="Nagget Mangrove">
+                    <div class="card-body">
+                        <h4 style="font-size:1.1rem;">Nagget Mangrove</h4>
+                        <p style="font-size:0.8rem;">Nugget mangrove adalah olahan makanan berbahan buah mangrove atau campuran bahan lain yang diolah menjadi nugget bergizi. Produk ini merupakan inovasi pangan dari potensi pesisir.
+.</p>
+                    </div>
+                </div>
+                <div class="card-item">
+                    <img src="images/stik_mangrove.jpeg" class="card-img"
+                        style="height:150px;" alt="Terasi">
+                    <div class="card-body">
+                        <h4 style="font-size:1.1rem;">Stik Mangrove</h4>
+                        <p style="font-size:0.8rem;">Stik mangrove adalah camilan renyah berbahan mangrove yang diolah menjadi stik gurih dan bergizi. Produk ini merupakan inovasi makanan dari potensi pesisir.
+.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artikel Desa (5 Item) -->
+    <section class="section container" id="artikel">
+        <div class="section-title">
+            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">BERITA & INFORMASI</p>
+            <h2>Artikel Terbaru</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="article-card">
+            <img src="https://nativeindonesia.com/wp-content/uploads/pulau-osi/pulau-osi.jpg" class="article-img"
+                alt="Berita 1">
+            <div class="article-content">
+                <p class="article-meta">22 Januari 2025 | Fenti Sukma</p>
+                <h3>Pulau Osi, Jembatan Kayunya Penghubung Antar Pulau</h3>
+                <p>Pulau Osi menjadi satu dari sederet pulau-pulau mungil nan indah yang ada di Indonesia. Pulau Osi terletak di Kabupaten Seram Bagian Barat, Provinsi Maluku....</p>
+                    <a href="https://nativeindonesia.com/pulau-osi/" target="_blank">Kunjungi Artikel</a>
+                    </div>
+        </div>
+
+        <div class="article-card">
+            <img src="https://img.antaranews.com/cache/1200x800/2024/01/03/IMG20231224163414_1.jpg.webp" class="article-img"
+                alt="Berita 2">
+            <div class="article-content">
+                <p class="article-meta">04 Januari 2024 | Ode Dedy Lion Abdul Azis</p>
+                <h3>Pulau Osi yang keindahannya selalu memanggil kembali</h3>
+                <p>Bagi pelancong pemburu objek wisata alam menawan, waktu tempuh berjam-jam bukanlah rintangan. Membelah lautan pun akan menjadi keasyikan karena di sinilah wisatawan mulai menikmati petualangan....</p>
+                          <a href="https://www.antaranews.com/berita/3899091/pulau-osi-yang-keindahannya-selalu-memanggil-kembali" target="_blank">Kunjungi Artikel</a>
+            </div>
+        </div>
+
+        <div class="article-card">
+            <img src="https://www.cengkepala.com/storage/2021/10/osi-p.jpg" class="article-img"
+                alt="Berita 3">
+            <div class="article-content">
+                <p class="article-meta">04 Oktober 2021 | BILL MALUKU</p>
+                <h3>Pulau Osi, Objek Wisata Andalan di SBB, Ini Sisi Menariknya</h3>
+                <p>Pulau Osi berada tepat di Kabupaten Seram Bagian Barat Maluku. Pulau kecil terpisah dengan daratan pulau seram ini menyimpan keindahan alam yang patut dikunjungi.....
+                </p>
+                 <a href="https://www.cengkepala.com/pulau-osi-objek-wisata-andalan-di-sbb-ini-sisi-menariknya/" target="_blank">Kunjungi Artikel</a>
+              </div>
+        </div>
+
+        <div class="article-card">
+            <img src="https://img.merahputih.com/media/fd/a1/0f/fda10f6a28ab633dee50cf3c126c9cee.jpg" class="article-img"
+                alt="Berita 4">
+            <div class="article-content">
+                <p class="article-meta">04 Januari 2024 | P.Suryo</p>
+                <h3>Pulau Osi, Penuh Panorama Alam Tak Tertandingi</h3>
+                <p>Wisatawan yang hendak ke Pulau Osi, menggunakan transportasi kapal. Dari Kota Ambon wisatawan naik kapal dari Pelabuhan Hunimua di Maluku tengah (Malteng). Kemudian menumpang feri menuju Pelabuhan Waipirit. Waktu yang dibutuhkan sekitar 1,5 sampai 2 jam, sebab ini tergantung kapal feri yang beroperasi....</p>
+                <a href="https://www.merahputih.com/post/read/pulau-osi-penuh-panorama-alam-tak-tertandingi" target="_blank">Kunjungi Artikel</a>
+            </div>
+        </div>
+
+        <div class="article-card">
+            <img src="https://www.celebes.co/maluku/wp-content/uploads/2022/03/Alamat-Pulau-Osi-Seram.jpg" class="article-img"
+                alt="Berita 5">
+            <div class="article-content">
+                <p class="article-meta">2025 | Indonesia Kaya</p>
+                <h3>Pulau Osi, Pulau Cantik dengan Panorama Memukau di Seram Bagian Barat</h3>
+                <p>Maluku merupakan salah satu pulau di Indonesia bagian timur yang menyimpan sejuta panorama alam gugusan pulau kecil yang indah.
+
+Sehingga tidak heran jika beberapa tahun belakangan ini Maluku menjadi salah satu tujuan wisata banyak wisatawan lokal dan mancanegara yang ingin menikmati keindahan alam yang ada di pulau ini. Salah satu gugusan pulau kecil di Maluku yang memiliki panorama yang indah ada di Pulau Osi.....
+                </p>
+                <a href="https://www.celebes.co/maluku/pulau-osi-seram" target="_blank">Kunjungi Artikel</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Desa (10 Item) -->
+    <section class="section" id="galeri" style="background: var(--primary-dark); color: white;">
+        <div class="container">
+            <div class="section-title">
+                <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">VISUAL PULAU OSI</p>
+                <h2 style="color: white;">Galeri Kegiatan</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="grid-gallery">
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Sunset di Jembatan')"><img
+                        src="images/galeri1.jpeg" alt="Galeri 1">
+                </div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Aktivitas Nelayan')"><img
+                        src="images/galeri2.jpeg" alt="Galeri 2">
+                </div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Penyelaman Karang')"><img
+                        src="images/galeri3.jpeg" alt="Galeri 3"></div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Konservasi Mangrove')"><img
+                        src="images/galeri4.jpeg" alt="Galeri 4">
+                </div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Pasar Lokal')"><img
+                        src="images/galeri5.jpeg" alt="Galeri 5">
+                </div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Resort Terapung')"><img
+                        src="images/galeri6.jpeg" alt="Galeri 6">
+                </div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Anak-anak Desa')"><img
+                        src="images/galeri7.jpeg" alt="Galeri 7">
+                </div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Produksi Kerajinan')"><img
+                        src="images/galeri8.jpeg" alt="Galeri 8">
+                </div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Festival Laut')"><img
+                        src="images/galeri9.jpeg" alt="Galeri 9"></div>
+                <div class="gallery-item" onclick="openModal(this.querySelector('img').src, 'Gotong Royong')"><img
+                        src="images/galeri11.jpeg" alt="Galeri 10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Peta Tematik & Lokasi -->
+    <section class="section container" id="peta">
+        <div class="section-title">
+            <p style="color: var(--accent); letter-spacing: 2px; font-weight: 600;">VISUALISASI DATA SPASIAL</p>
+            <h2>Peta Tematik & Lokasi</h2>
+            <div class="divider"></div>
+        </div>
+
+        <!-- Peta Tematik Grid -->
+        <div class="grid-thematic">
+            <div class="map-card" onclick="openModal('images/peta_dusun_2.png', 'Peta Administrasi Desa')">
+                <img src="images/peta_dusun_2.png" class="map-thumb" alt="Peta Administrasi">
+                <h4>Peta Administrasi Dusun Pulau Osi</h4>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">Batas wilayah dusun serta sarana dan prasarana pendukung desa</p>
+            </div>
+            <div class="map-card" onclick="openModal('images/peta_potensi_lahan.png', 'Peta Potensi Desa')">
+                <img src="images/peta_potensi_lahan.png" class="map-thumb" alt="Peta Potensi">
+                <h4>Peta Potensi</h4>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">Sebaran sumber daya alam berupa hutan mangrove, perikanan, dan objek wisata view</p>
+            </div>
+            <div class="map-card" onclick="openModal('images/peta_penggunaan_lahan.png', 'Peta Penggunaan Lahan')">
+                <img src="images/peta_penggunaan_lahan.png" class="map-thumb" alt="Peta Lahan">
+                <h4>Peta Penggunaan Lahan</h4>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">dalam peta ini menyajikan informasi tentang penggunaan lahan di wilayah dusun Pulau Osi</p>
+            </div>
+            <div class="map-card" onclick="openModal('images/peta_bencana.jpeg', 'Peta Kerawanan Bencana')">
+                <img src="images/peta_bencana.jpeg" class="map-thumb" alt="Peta Bencana">
+                <h4>Peta Bencana</h4>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">Area rawan banjir, banjir robb atau banjir air pasang & tsunami</p>
+            </div>
+            
+        </div>
+
+        <!-- Google Maps -->
+        <div style="height: 450px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow);">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1992.1331091924426!2d128.0745937125061!3d-3.023014024262607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6c2fc0ce84b3c1%3A0xdad2da7611301fae!2sBALAI%20DUSUN%20PULAU%20OSI!5e0!3m2!1sid!2sid!4v1776694633534!5m2!1sid!2sid"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h3 class="serif" style="font-size: 2rem; color: white;">Pulau Osi</h3>
+                <p style="margin-top: 1rem;">Membangun masa depan pesisir yang mandiri, berbudaya, dan terdigitalisasi. 
+                </p>
+                <a href="https://instagram.com/alvarotipawael_" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i> @alvarotipawael_
+                </a>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem;">Navigasi</h4>
+                <a href="#statistik"
+                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Statistik</a>
+                <a href="#sejarah"
+                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Sejarah</a>
+                <a href="#potensi"
+                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Potensi</a>
+                <a href="#umkm"
+                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">UMKM</a>
+                <a href="#artikel"
+                    style="display:block; color:#9ca3af; text-decoration:none; margin-bottom: 0.5rem;">Berita</a>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem;">Kontak & Sosial Media</h4>
+                <a href="mailto:osiislandofficial@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i> osiislandofficial@gmail.com
+                </a>
+                <a href="https://instagram.com/osiisland_official" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i> @osiisland_official
+                </a>
+                <p style="margin-top: 1rem;"><i class="fas fa-map-marker-alt"></i> Kec. Seram Barat, Kab. Seram Bagian Barat
+                </p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; opacity: 0.5; font-size: 0.8rem;">
+            &copy; 2026 Pemerintah Dusun Pulau Osi - KKN UNPATTI AKT 52 GEL 2 
+        </div>
+    </footer>
+
+    <!-- Modal View -->
+    <div id="imageModal">
+        <span onclick="closeModal()"
+            style="position:absolute; top:20px; right:30px; font-size:3rem; cursor:pointer; color:white;">&times;</span>
+        <img id="modalImg" src="">
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            themeBtn.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        });
+
+        // Toggle Sejarah Baca Selengkapnya
+        function toggleHistory() {
+            const moreText = document.getElementById("moreText");
+            const btnText = document.getElementById("readMoreBtn");
+
+            if (moreText.style.display === "block") {
+                moreText.style.display = "none";
+                btnText.innerHTML = 'Baca Selengkapnya <i class="fas fa-chevron-down"></i>';
+            } else {
+                moreText.style.display = "block";
+                btnText.innerHTML = 'Tampilkan Lebih Sedikit <i class="fas fa-chevron-up"></i>';
+            }
+        }
+
+        // Modal Interaction
+        function openModal(src, title) {
+            document.getElementById('modalImg').src = src;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Close modal on click outside image
+        document.getElementById('imageModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('imageModal')) closeModal();
+        });
+    </script>
+</body>
+
+</html>
