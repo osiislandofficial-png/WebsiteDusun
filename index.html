@@ -131,6 +131,41 @@
         .nav-links a:hover {
             color: var(--accent);
         }
+        
+        /* Hamburger Menu */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: var(--bg-card);
+        flex-direction: column;
+        width: 220px;
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        display: none;
+        gap: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
 
         /* Hero */
         .hero {
@@ -505,25 +540,32 @@
 <body data-theme="light">
 
     <nav>
-        <div class="container">
-            <a href="#" class="logo">
-                <i class="fas fa-ship" style="color: var(--accent);"></i>
-                <span class="brand-name">Pulau Osi</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#statistik">Statistik</a></li>
-                <li><a href="#sejarah">Sejarah</a></li>
-                <li><a href="#potensi">Potensi</a></li>
-                <li><a href="#umkm">UMKM</a></li>
-                <li><a href="#artikel">Artikel</a></li>
-                <li><a href="#galeri">Galeri</a></li>
-            </ul>
-            <button id="themeBtn"
-                style="background:none; border:none; cursor:pointer; color:var(--text-main); font-size: 1.1rem;">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
+    <div class="container">
+        <a href="#" class="logo">
+            <i class="fas fa-ship" style="color: var(--accent);"></i>
+            <span class="brand-name">Pulau Osi</span>
+        </a>
+
+        <ul class="nav-links" id="navMenu">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#statistik">Statistik</a></li>
+            <li><a href="#sejarah">Sejarah</a></li>
+            <li><a href="#potensi">Potensi</a></li>
+            <li><a href="#umkm">UMKM</a></li>
+            <li><a href="#artikel">Artikel</a></li>
+            <li><a href="#galeri">Galeri</a></li>
+        </ul>
+
+        <!-- Tombol Hamburger -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <button id="themeBtn"
+            style="background:none; border:none; cursor:pointer; color:var(--text-main); font-size: 1.1rem;">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
     </nav>
 
     <header class="hero" id="home">
@@ -934,6 +976,14 @@ Sehingga tidak heran jika beberapa tahun belakangan ini Maluku menjadi salah sat
         document.getElementById('imageModal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('imageModal')) closeModal();
         });
+
+        // Hamburger Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+         menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        });     
     </script>
 </body>
 
